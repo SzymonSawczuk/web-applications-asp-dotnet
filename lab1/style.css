@@ -1,0 +1,40 @@
+body {
+  background-color: #ffe;
+  color: black;
+}
+
+.headers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headers h1,
+h2,
+h3 {
+  margin-bottom: 0;
+}
+.headers h2,
+h3 {
+  margin-top: 20px;
+}
+
+p {
+  text-align: justify;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: darkgray;
+}
