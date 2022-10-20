@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Page showing a solution for list 2" />
+    <meta name="keywords" content="html5, example, solution, list2" />
+    <meta name="author" content="Szymon Sawczuk" />
+    <meta http-equiv="default-style" content="style.css" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Document for list 2</title>
+  </head>
+  <body>
+    <header>
+      <h1>Solution for list 2</h1>
+      <nav>
+        <ul>
+          <li><a href="#lists_section">LISTS</a></li>
+          <li><a href="#definitions_section">OTHER LISTS</a></li>
+          <li><a href="#table_section">TABLES</a></li>
+          <li><a href="#form_section">FORMS</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="lists_section">
+      <h3>Lists</h3>
+      <div class="articles">
+        <article>
+          <h4>Different suits of cards:</h4>
+          <ol>
+            <li>Hearts &hearts;</li>
+            <li>Spades &spades;</li>
+            <li>Clubs &clubs;</li>
+            <li>Diamond &diams;</li>
+          </ol>
+        </article>
+
+        <article>
+          <h4>List of browsers</h4>
+
+          <ul>
+            <li><strong>Google Chrome</strong></li>
+            <li>Firefox</li>
+            <li>Safari</li>
+            <li>Microsoft Edge</li>
+            <li>Opera GX <small>(or just Opera)</small></li>
+          </ul>
+        </article>
+
+        <article>
+          <h4>Nested List</h4>
+
+          <ul>
+            <li>
+              Types of lists:
+              <ol>
+                <li>
+                  Ordered list:
+                  <ul>
+                    <li>
+                      1 - The list items will be numbered with numbers (default)
+                    </li>
+                    <li>
+                      A - The list items will be numbered with uppercase letters
+                    </li>
+
+                    <li>
+                      a - The list items will be numbered with lowercase letters
+                    </li>
+                    <li>
+                      The list items will be numbered with roman numbers:
+                      <ol>
+                        <li>I (uppercase)</li>
+                        <li>i (lowercase)</li>
+                      </ol>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  Unordered list:
+                  <ol>
+                    <li>Disc</li>
+                    <li>Circle</li>
+                    <li>Square</li>
+                    <li>None</li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+
+            <li>Definition list</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="definitions_section">
+      <h3>Other lists</h3>
+
+      <div class="articles">
+        <article>
+          <h4>Definitions:</h4>
+          <dl>
+            <dt>HTML</dt>
+            <dd>
+              The HyperText Markup Language or <del>HML</del><ins>HTML</ins> is
+              the standard markup language for documents designed to be
+              displayed in a web browser. It can be assisted by technologies
+              such as Cascading Style Sheets (CSS) and scripting languages such
+              as JavaScript.
+            </dd>
+            <dt>Lorem Ipsum</dt>
+            <dd>
+              In publishing and graphic design, Lorem ipsum is a placeholder
+              text commonly used to demonstrate the visual form of a document or
+              a typeface without relying on meaningful content. Lorem ipsum may
+              be used as a placeholder before final copy is available. It is
+              also used to temporarily replace text in a process called
+              greeking, which allows designers to consider the form of a webpage
+              or publication, without the meaning of the text influencing the
+              design.
+            </dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="table_section">
+      <h3>Tables</h3>
+
+      <div class="articles">
+        <article>
+          <h4>Table nr 1</h4>
+          <table>
+            <caption>
+              Example of table
+            </caption>
+            <thead>
+              <tr>
+                <th colspan="2">Name</th>
+                <th colspan="4">Info</th>
+              </tr>
+              <tr>
+                <th colspan="2"></th>
+                <th></th>
+                <th colspan="3">More Info</th>
+              </tr>
+              <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Age</th>
+                <th>Visits</th>
+                <th>Status</th>
+                <th>Budget</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tanner</td>
+                <td rowspan="2">Jones</td>
+                <td>32</td>
+                <td>20</td>
+                <td rowspan="2">In Relationship</td>
+                <td>$100</td>
+              </tr>
+              <tr>
+                <td>Emily</td>
+                <td>29</td>
+                <td>80</td>
+                <td>$130</td>
+              </tr>
+              <tr>
+                <td>Joe</td>
+                <td>Smiith</td>
+                <td>30</td>
+                <td>100</td>
+                <td>Single</td>
+                <td>$1000</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td rowspan="2">Bloom</td>
+                <td>30</td>
+                <td>2</td>
+                <td rowspan="2">In Relationship</td>
+                <td>$40</td>
+              </tr>
+              <tr>
+                <td>Ben</td>
+                <td>35</td>
+                <td>15</td>
+                <td>$100</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="5">Total Budget:</th>
+                <th>$1370</th>
+              </tr>
+            </tfoot>
+          </table>
+        </article>
+
+        <article class="live">
+          <h4>Table nr 2</h4>
+          <table>
+            <tbody>
+              <tr>
+                <td rowspan="3" colspan="2">
+                  <img
+                    alt="image_table"
+                    src="data:image/jpeg;base64,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"
+                  />
+                </td>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+              </tr>
+
+              <tr>
+                <td>D</td>
+                <td>E</td>
+                <td rowspan="3">&commat;</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <a href="https://www.wikipedia.org" target="_blank">
+                    www.wikipedia.org</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>F</td>
+                <td>G</td>
+                <td>H</td>
+                <td>I</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>J</td>
+                <td colspan="3">&lt; FOOTER &gt;</td>
+                <td>K</td>
+              </tr>
+            </tfoot>
+          </table>
+        </article>
+      </div>
+    </section>
+
+    <section id="form_section">
+      <h3>Forms</h3>
+
+      <div class="articles">
+        <article>
+          <h4>Example Form</h4>
+          <form method="post" action="http://localhost:5500/ExampleForm.html">
+            <p>
+              <label for="name_input">Name<sup>*</sup>:</label>
+              <input
+                id="name_input"
+                name="name"
+                type="text"
+                maxlength="50"
+                required
+              />
+            </p>
+            <p>
+              <label for="email_input">Email<sup>*</sup>:</label>
+              <input id="email_input" type="email" name="email" required />
+            </p>
+            <p>
+              <label for="password_input"
+                >Password <small>(min. 8 characters)</small><sup>*</sup>:</label
+              >
+              <input
+                id="password_input"
+                name="pass"
+                type="password"
+                minlength="8"
+                required
+              />
+            </p>
+            <p>
+              <label for="desc_input">Tell something about yourself:</label>
+              <textarea
+                id="desc_input"
+                name="desc"
+                cols="30"
+                rows="3"
+              ></textarea>
+            </p>
+            <p>
+              <label for="phone_input"
+                >&phone; Phone number (format +48123456789)<sup>*</sup>:</label
+              >
+              <input
+                id="phone_input"
+                name="phone"
+                type="tel"
+                pattern="[+]{1}[0-9]{2}[0-9]{9}"
+                required
+              />
+            </p>
+            <p>
+              <label for="date_input">Date of birth</label>
+              <input id="date_input" type="date" name="date_of_birth" />
+            </p>
+            <p>
+              <label for="animal_input">What animal do you like?</label>
+              <select id="animal_input" name="animal">
+                <option>None</option>
+                <option>Dog</option>
+                <option>Cat</option>
+                <option>Frog</option>
+              </select>
+            </p>
+
+            <p>
+              <label for="color_input">Favourite color:</label>
+              <input id="color_input" name="color" type="color" />
+            </p>
+
+            <p>
+              <label>What languages you can speak?</label>
+              <label
+                ><input
+                  class="checkboxes"
+                  name="language"
+                  type="checkbox"
+                  value="Polish"
+                  checked
+                />Polish</label
+              >
+              <label
+                ><input
+                  class="checkboxes"
+                  name="language"
+                  type="checkbox"
+                  value="English"
+                />English</label
+              >
+              <label
+                ><input
+                  class="checkboxes"
+                  name="language"
+                  type="checkbox"
+                  value="German"
+                />German</label
+              >
+              <label
+                ><input
+                  class="checkboxes"
+                  name="language"
+                  type="checkbox"
+                  value="Spanish"
+                />Spanish</label
+              >
+            </p>
+
+            <p>
+              <label for="datetime_input"
+                >When do you want to meet?<sup>*</sup></label
+              >
+              <input
+                id="datetime_input"
+                name="datetime"
+                type="datetime-local"
+                required
+              />
+            </p>
+            <p class="buttons">
+              <input class="button" type="reset" value="Clear" />
+              <input class="button" type="submit" value="Send" />
+            </p>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <em>Created by Szymon Sawczuk &copy;</em>
+      <p><a href="#">HOME</a></p>
+    </footer>
+  </body>
+</html>

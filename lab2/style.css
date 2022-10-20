@@ -1,0 +1,107 @@
+.articles,
+header {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+article {
+  box-shadow: 0px 0px 4px 1px rgb(0 0 0 / 0.2);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+header {
+  box-shadow: 1px 3px 3px 3px rgb(0 0 0 / 0.2);
+  border-radius: 20px;
+}
+
+dd {
+  text-align: justify;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  justify-content: center;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(90, 78, 78);
+}
+
+p {
+  margin: 30px;
+}
+
+footer p {
+  margin: 0;
+  margin-left: 30px;
+}
+
+input,
+textarea,
+select {
+  float: right;
+}
+
+textarea {
+  resize: none;
+}
+
+.checkboxes,
+.button {
+  float: none;
+}
+
+.buttons {
+  float: right;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  box-shadow: 1px 3px 3px 3px rgb(0 0 0 / 0.2);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+td,
+th {
+  padding: 10px;
+}
+
+tbody td:last-child {
+  text-align: right;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+.live tbody td:last-child {
+  text-align: center;
+}
+
+.live td {
+  text-align: center;
+}
