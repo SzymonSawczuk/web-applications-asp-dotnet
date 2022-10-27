@@ -30,7 +30,7 @@ p::first-letter {
   font-size: 200%;
 }
 
-#outer {
+.outer {
   background-color: black;
   margin: 2em;
   padding: 20px;
@@ -44,7 +44,7 @@ p::first-letter {
 
 #pos_absolute,
 #pos_relative,
-#pos_static,
+.pos_static,
 #pos_fixed {
   background-color: aqua;
   border-radius: 20px;
@@ -59,16 +59,16 @@ p::first-letter {
   left: 20px;
 }
 
-#pos_static {
+.pos_static {
   position: static;
   margin: 10px;
 }
 
-#float_left > #pos_static {
+#float_left > .pos_static {
   float: left;
 }
 
-#float_right > #pos_static {
+#float_right > .pos_static {
   float: right;
 }
 
