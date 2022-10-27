@@ -1,0 +1,199 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-image: url("https://static.bimago.pl/mediacache/catalog/product/cache/4/2/117624/image/750x1120/7c0505584f03c89c005bad1e2b9708a6/117624_1.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+p {
+  text-align: justify;
+  font-size: 20px;
+}
+.text_size {
+  font-size: large;
+}
+.text_size p,
+.text_size p::first-letter {
+  font-size: smaller;
+}
+
+p::first-letter {
+  font-size: 1.5em;
+}
+
+.printing > p {
+  font-size: 18pt;
+}
+
+.printing > p::first-letter {
+  font-size: 200%;
+}
+
+#outer {
+  background-color: black;
+  margin: 2em;
+  padding: 20px;
+  height: 200px;
+}
+
+#pos_absolute {
+  position: absolute;
+  right: 20px;
+}
+
+#pos_absolute,
+#pos_relative,
+#pos_static,
+#pos_fixed {
+  background-color: aqua;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100px;
+  font-size: x-small;
+  font-weight: 800;
+}
+
+#pos_relative {
+  position: relative;
+  left: 20px;
+}
+
+#pos_static {
+  position: static;
+  margin: 10px;
+}
+
+#float_left > #pos_static {
+  float: left;
+}
+
+#float_right > #pos_static {
+  float: right;
+}
+
+#pos_fixed {
+  position: fixed;
+  left: 20px;
+}
+.border1,
+.border2 {
+  margin: 2em;
+  padding: 1.5em;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.border1 > p::first-line {
+  font-weight: bolder;
+}
+
+.border1 {
+  border-width: 1em;
+  border-color: black;
+  border-style: dashed;
+}
+
+.border2 {
+  border-width: 0.5em;
+  border-color: blueviolet;
+  border-style: solid;
+}
+
+nav {
+  height: 100%;
+  width: fit-content;
+}
+
+nav img {
+  width: 1em;
+}
+
+nav ul {
+  display: none;
+}
+
+nav li {
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav:hover > ul {
+  display: block;
+}
+
+nav > ul > li:hover > ul {
+  display: block;
+  float: right;
+}
+
+a:visited {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: overline;
+}
+
+header {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  align-items: center;
+  height: 15em;
+}
+
+header > h1 {
+  text-align: right;
+}
+
+.live table {
+  width: 100%;
+  height: 20em;
+  border-collapse: collapse;
+}
+
+table,
+td,
+th {
+  border: 1px solid;
+  text-align: center;
+}
+
+.live tbody > tr:first-child > td:nth-child(2) {
+  background-color: antiquewhite;
+}
+
+tfoot > tr > td:last-child,
+tfoot > tr > th:last-child {
+  background-color: red;
+}
+
+tfoot > tr > th:last-child {
+  text-align: right;
+}
+
+.table_div {
+  display: flex;
+  justify-content: center;
+}
+
+.table_div tbody > tr > td:last-child {
+  font-weight: 600;
+  text-align: right;
+}
+
+.table_div tfoot > tr > th:first-child {
+  text-align: left;
+}

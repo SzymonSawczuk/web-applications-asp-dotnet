@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Table 2</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png"
+          alt="hamburger"
+        />
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>
+            Box Model
+            <ul class="box_model">
+              <li><a href="boxModel1.html">Position</a></li>
+              <li><a href="boxModel2.html">Static float</a></li>
+            </ul>
+          </li>
+          <li><a href="border.html">Border</a></li>
+          <li>
+            Tables
+            <ul>
+              <li><a href="table1.html">Table 1</a></li>
+              <li><a href="table2.html">Table 2</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <h1>Table nr 2</h1>
+    </header>
+
+    <section id="table_section">
+      <div class="table_div">
+        <table>
+          <caption>
+            Example of table
+          </caption>
+          <thead>
+            <tr>
+              <th colspan="2">Name</th>
+              <th colspan="4">Info</th>
+            </tr>
+            <tr>
+              <th colspan="2"></th>
+              <th></th>
+              <th colspan="3">More Info</th>
+            </tr>
+            <tr>
+              <th>FirstName</th>
+              <th>LastName</th>
+              <th>Age</th>
+              <th>Visits</th>
+              <th>Status</th>
+              <th>Budget</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tanner</td>
+              <td rowspan="2">Jones</td>
+              <td>32</td>
+              <td>20</td>
+              <td rowspan="2">In Relationship</td>
+              <td>$100</td>
+            </tr>
+            <tr>
+              <td>Emily</td>
+              <td>29</td>
+              <td>80</td>
+              <td>$130</td>
+            </tr>
+            <tr>
+              <td>Joe</td>
+              <td>Smiith</td>
+              <td>30</td>
+              <td>100</td>
+              <td>Single</td>
+              <td>$1000</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td rowspan="2">Bloom</td>
+              <td>30</td>
+              <td>2</td>
+              <td rowspan="2">In Relationship</td>
+              <td>$40</td>
+            </tr>
+            <tr>
+              <td>Ben</td>
+              <td>35</td>
+              <td>15</td>
+              <td>$100</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="5">Total Budget:</th>
+              <th>$1370</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>
