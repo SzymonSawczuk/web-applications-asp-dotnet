@@ -8,9 +8,11 @@ const getRandomInt = (min, max) =>
 function generateElements(amount) {
   for (let i = 0; i < amount; i++) {
     let new_element = getRandomInt(1, 100);
+
     while (arr_of_elements.includes(new_element) == true) {
       new_element = getRandomInt(1, 100);
     }
+
     arr_of_elements.push(new_element);
   }
 }
@@ -33,8 +35,10 @@ function generateBody() {
 
   for (let i = 0; i < size; i++) {
     let new_head = document.createElement("th");
-    let new_row = document.createElement("tr");
     new_head.innerText = arr_of_elements[i];
+
+    let new_row = document.createElement("tr");
+
     matrix_body.appendChild(new_row);
     new_row.appendChild(new_head);
 
