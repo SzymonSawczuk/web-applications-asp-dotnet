@@ -1,0 +1,16 @@
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/bin/Debug/net5.0/zad1_l5
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/bin/Debug/net5.0/zad1_l5.deps.json
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/bin/Debug/net5.0/zad1_l5.runtimeconfig.json
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/bin/Debug/net5.0/zad1_l5.runtimeconfig.dev.json
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/bin/Debug/net5.0/zad1_l5.dll
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/bin/Debug/net5.0/zad1_l5.pdb
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.csproj.AssemblyReference.cache
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.GeneratedMSBuildEditorConfig.editorconfig
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.AssemblyInfoInputs.cache
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.AssemblyInfo.cs
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.csproj.CoreCompileInputs.cache
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.dll
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/refint/zad1_l5.dll
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.pdb
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/zad1_l5.genruntimeconfig.cache
+/Users/szymon/Documents/Uczelnia/Sem5/DOTNET/DOTNET/lab5/zad1_l5/zad1_l5/obj/Debug/net5.0/ref/zad1_l5.dll
