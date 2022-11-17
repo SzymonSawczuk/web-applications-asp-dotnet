@@ -47,7 +47,7 @@ namespace lab6_z5
 
         static void Main(string[] args)
         {
-            DrawCard("Szymon", "Wojciech", symbol: 'x', width: 2, minLength: 10);
+            DrawCard("Szymon",minLength: 10);
         }
     }
 }

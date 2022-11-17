@@ -14,6 +14,8 @@ namespace lab6_z1
             var (name, surname, age, salary) = tuple;
             Console.WriteLine("Name: {0}, Surname: {1}, Age: {2}, Salary: {3:0.00}PLN", name, surname, age, salary);
 
+            Console.Write(tuple.ToString());
+
         }
 
 
