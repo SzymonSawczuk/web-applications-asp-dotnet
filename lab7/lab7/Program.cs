@@ -2,6 +2,7 @@
 using LinqExamples;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reflection;
 
 //Szymon Sawczuk 260287
 
@@ -66,6 +67,11 @@ namespace lab7
             this.Active = active;
             this.DepartmentId = departmentId;
             this.Topics = topics;
+        }
+
+        public (string, int) AddSecondNameToNameAndChangeIndexByAge(string secondName, int age)
+        {
+            return (this.Name + " " + secondName, this.Index + age);
         }
 
         public override string ToString()
@@ -136,9 +142,9 @@ namespace lab7
 
         }
 
-        public static void ShowGroupByNameAndIndexN()
+        public static void ShowGroupByNameAndIndexN(int n)
         {
-            var students = GroupByNameAndIndexN(3);
+            var students = GroupByNameAndIndexN(n);
 
             foreach(var student in students)
             {
@@ -179,6 +185,7 @@ namespace lab7
                                 
                     };
         }
+
         public static void ShowSortTopicsByFreq()
         {
             var topics = SortTopicsByFreq();
@@ -260,18 +267,42 @@ namespace lab7
         static void Main(string[] args)
         {
 
-            //ShowGroupByNameAndIndexN();
+            //ShowGroupByNameAndIndexN(3);
+            //ShowGroupByNameAndIndexN(5);
             //ShowSortTopicsByFreq();
             //ShowSortTopicsByFreqGender();
 
             //var students = GenerateStudents();
 
-            //foreach(var student in students)
+            //foreach (var student in students)
             //{
             //    Console.WriteLine(student);
             //}
 
-            zad3_3();
+            //zad3_3();
+
+            //zad4
+            //string str = "test";
+
+            //MethodInfo methodInfo1 = str.GetType().GetMethod("Contains", new Type[] { typeof(char) });
+
+            //bool result = (bool)methodInfo1.Invoke(str, new object[] { 'c' });
+            //Console.WriteLine($"Result = {result}");
+
+            //int[] arr = new int[] { 3, 41, 2, 4 };
+            //MethodInfo methodInfo2 = arr.GetType().GetMethod("GetValue", new Type[] { typeof(int) });
+
+            //int result2 = (int)methodInfo2.Invoke(arr, new object[] { 1 });
+            //Console.WriteLine($"Result = {result2}");
+
+            //Student student = new Student(99, 260287, "Sawczuk", Gender.Male, true, 12, new List<int> { 1, 4 });
+
+            //MethodInfo methodInfo3 = student.GetType().GetMethod("AddSecondNameToNameAndChangeIndexByAge",
+            //    new Type[] { typeof(string), typeof(int) });
+
+            //(string, int) result3 = ((string, int))methodInfo3.Invoke(student, new object[] { "Szymon", 20 });
+            //Console.WriteLine($"Result = {result3}");
+
         }
     }
     
