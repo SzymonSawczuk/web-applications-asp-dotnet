@@ -3,6 +3,7 @@ using LinqExamples;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Xml.Linq;
 
 //Szymon Sawczuk 260287
 
@@ -68,6 +69,17 @@ namespace lab7
             this.DepartmentId = departmentId;
             this.Topics = topics;
         }
+
+        //public Student()
+        //{
+        //    this.Id = 99;
+        //    this.Index = 260287;
+        //    this.Name = "Sawczuk";
+        //    this.Gender = Gender.Male;
+        //    this.Active = true;
+        //    this.DepartmentId = 99;
+        //    this.Topics = new List<int> { 4, 2 };
+        //}
 
         public (string, int) AddSecondNameToNameAndChangeIndexByAge(string secondName, int age)
         {
@@ -282,26 +294,21 @@ namespace lab7
             //zad3_3();
 
             //zad4
-            //string str = "test";
 
-            //MethodInfo methodInfo1 = str.GetType().GetMethod("Contains", new Type[] { typeof(char) });
 
-            //bool result = (bool)methodInfo1.Invoke(str, new object[] { 'c' });
-            //Console.WriteLine($"Result = {result}");
-
-            //int[] arr = new int[] { 3, 41, 2, 4 };
-            //MethodInfo methodInfo2 = arr.GetType().GetMethod("GetValue", new Type[] { typeof(int) });
-
-            //int result2 = (int)methodInfo2.Invoke(arr, new object[] { 1 });
-            //Console.WriteLine($"Result = {result2}");
+            //Student student = (Student)Activator.CreateInstance(typeof(Student), new object[] { 99, 260287, "Sawczuk", Gender.Male, true, 12, new List<int> { 1, 4 } });
 
             //Student student = new Student(99, 260287, "Sawczuk", Gender.Male, true, 12, new List<int> { 1, 4 });
 
-            //MethodInfo methodInfo3 = student.GetType().GetMethod("AddSecondNameToNameAndChangeIndexByAge",
-            //    new Type[] { typeof(string), typeof(int) });
+            Student student = (Student)typeof(Student).Assembly.CreateInstance("lab7.Student", false, BindingFlags.CreateInstance,
+                                null, new object[] { 99, 260287, "Sawczuk", Gender.Male, true, 12, new List<int> { 1, 4 } }, null, null);
 
-            //(string, int) result3 = ((string, int))methodInfo3.Invoke(student, new object[] { "Szymon", 20 });
-            //Console.WriteLine($"Result = {result3}");
+            MethodInfo methodInfo = student.GetType().GetMethod("AddSecondNameToNameAndChangeIndexByAge",
+                new Type[] { typeof(string), typeof(int) });
+
+   
+            (string, int) result = ((string, int))methodInfo.Invoke(student, new object[] { "Szymon", 20 });
+            Console.WriteLine($"Result = {result}");
 
         }
     }
