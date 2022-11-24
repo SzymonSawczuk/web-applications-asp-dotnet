@@ -281,14 +281,15 @@ namespace lab7
 
             //ShowGroupByNameAndIndexN(3);
             //ShowGroupByNameAndIndexN(5);
+
             //ShowSortTopicsByFreq();
             //ShowSortTopicsByFreqGender();
 
             //var students = GenerateStudents();
 
-            //foreach (var student in students)
+            //foreach (var stud in students)
             //{
-            //    Console.WriteLine(student);
+            //    Console.WriteLine(stud);
             //}
 
             //zad3_3();
@@ -300,7 +301,8 @@ namespace lab7
 
             //Student student = new Student(99, 260287, "Sawczuk", Gender.Male, true, 12, new List<int> { 1, 4 });
 
-            Student student = (Student)typeof(Student).Assembly.CreateInstance("lab7.Student", false, BindingFlags.CreateInstance,
+
+            Object student = Type.GetType("lab7.Student").Assembly.CreateInstance("lab7.Student", false, BindingFlags.CreateInstance,
                                 null, new object[] { 99, 260287, "Sawczuk", Gender.Male, true, 12, new List<int> { 1, 4 } }, null, null);
 
             MethodInfo methodInfo = student.GetType().GetMethod("AddSecondNameToNameAndChangeIndexByAge",
