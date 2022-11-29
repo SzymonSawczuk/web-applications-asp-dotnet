@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace list8_zad1.Models
+namespace lab8.Models
 {
     public class ErrorViewModel
     {

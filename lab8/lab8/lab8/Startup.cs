@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace list8_zad1
+namespace lab8
 {
     public class Startup
     {
@@ -53,8 +53,8 @@ namespace list8_zad1
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "Solve",
-                    pattern: "{controller=Tool}/{action=Solve}/{a}/{b}/{c}");
+                   name: "Solve",
+                   pattern: "{controller=Tool}/{action=Solve}/{a}/{b}/{c}");
             });
         }
     }

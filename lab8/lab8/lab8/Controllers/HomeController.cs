@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using list8_zad1.Models;
+using lab8.Models;
 
-namespace list8_zad1.Controllers
+namespace lab8.Controllers
 {
     public class HomeController : Controller
     {
