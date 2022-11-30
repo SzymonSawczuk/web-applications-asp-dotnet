@@ -32,11 +32,15 @@ namespace lab8.Controllers
             return View();
         }
 
-        [Route("Tool/Solve/{a}/{b}/{c}")]
+        [Route("Tool/Solve/{a}/{b}/{c}", Name = "solve_url")]
         public IActionResult Solve(float a, float b, float c)
         {
             (ViewBag.x1, ViewBag.x2) = ToolViewModel.QuadraticFormula(a, b, c);
-            return View();
+            return View("Solve");
+        }
+        public IActionResult Solve2(float a, float b, float c)
+        {
+            return Redirect(Url.Link("solve_url", new { a = a, b =b, c = c}));
         }
 
 
