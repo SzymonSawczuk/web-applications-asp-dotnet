@@ -6,8 +6,10 @@
 
   <ItemGroup>
     <None Remove="Views\Tool\" />
+    <None Remove="Views\Game\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Tool\" />
+    <Folder Include="Views\Game\" />
   </ItemGroup>
 </Project>

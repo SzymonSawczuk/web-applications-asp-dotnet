@@ -56,10 +56,6 @@ namespace lab8
                    name: "Solve",
                    pattern: "{controller=Tool}/{action=Solve}");
 
-                endpoints.MapControllerRoute(
-                    name: "Solve2",
-                    pattern: "Tool/Solve/{a}/{b}/{c}",
-                    defaults: new { controller = "Tool", action = "Solve2"});
 
             });
         }
