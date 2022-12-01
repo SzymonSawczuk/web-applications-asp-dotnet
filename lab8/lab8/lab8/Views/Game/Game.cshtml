@@ -1,9 +1,29 @@
-﻿@page
-@{
+﻿@{
+    ViewData["Title"] = "Home Page";
 }
 
-@ViewBag.n
-@ViewBag.compNumb
-@ViewBag.result
+<div class="text-center">
+    <h2 class="display-4">Let's play a game!</h2>
+</div>
+
+<div class="forms @ViewBag.showClass">
+    <form class="type-n" method="post" asp-action="Set2">
+        <label for="valueN">Type number N: </label><input class="number-input" id="valueN" type="number" name="value" />
+        <input class="submit-butt" type="submit" value="Submit N" />
+    </form>
+
+    <form class="type-guess" method="post" asp-action="Guess2">
+        <label for="valueN">Guess number: </label><input class="number-input" id="valueGuessed" type="number" name="value" />
+        <input class="submit-butt" type="submit" value="Guess" />
+    </form>
+
+    <p class="info-after-set">You choosed N to be: @ViewBag.n, now draw random number!</p>
+
+    <form class="type-draw" method="post" asp-action="Draw">
+        <input class="submit-butt" type="submit" value="Draw number" />
+    </form>
+    <p class="info"></p>
+    <p class="info-try">Number of try: @ViewBag.tryNum</p>
+</div>
 
 

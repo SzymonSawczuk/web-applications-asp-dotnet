@@ -10,6 +10,8 @@ namespace lab8.Controllers
     {
         static int? amountN = null;
         static int? randValue = null;
+        static int tryNumber = 1;
+        static bool isGuessed = false;
 
         [Route("Game/Game")]
         public IActionResult Game()
@@ -20,14 +22,26 @@ namespace lab8.Controllers
         [Route("/Set", Name = "game_url")]
         public IActionResult Set()
         {
+            ViewBag.ShowClass = "start";
+            isGuessed = false;
+            tryNumber = 1;
             return View("Game");
         }
 
-        [Route("/Set,{value}")]
+        public IActionResult Set2(int value)
+        {
+            return Redirect(Url.Link("game_url_value", new { value = value }));
+        }
+
+        [Route("/Set,{value}", Name = "game_url_value")]
         public IActionResult Set(int value)
         {
             ViewBag.n = value;
             amountN = value;
+            randValue = null;
+            ViewBag.ShowClass = "set_done";
+            isGuessed = false;
+            tryNumber = 1;
             return View("Game");
         }
 
@@ -41,15 +55,38 @@ namespace lab8.Controllers
 
             ViewBag.compNumb = randValue;
 
+            ViewBag.ShowClass = "drawed";
+
+            isGuessed = false;
+            tryNumber = 1;
+
             return View("Game");
         }
 
-        [Route("/Guess,{value}")]
+        public IActionResult Guess2(int value)
+        {
+            return Redirect(Url.Link("guess_url", new { value = value }));
+        }
+
+        [Route("/Guess,{value}", Name = "guess_url")]
         public IActionResult Guess(int value)
         {
-            if (value == randValue) ViewBag.result = 1;
-            else if (value < randValue) ViewBag.result = 0;
-            else ViewBag.result = 2;
+            if (isGuessed || value == randValue)
+            {
+                ViewBag.ShowClass = "drawed guessed";
+            }
+            else if (!isGuessed && value < randValue)
+            {
+                ViewBag.ShowClass = "drawed larger";
+                if(!isGuessed) tryNumber++;
+            }
+            else if(!isGuessed && value > randValue)
+            {
+                ViewBag.ShowClass = "drawed smaller";
+                if(!isGuessed) tryNumber++;
+            }
+
+            ViewBag.tryNum = tryNumber;
 
             return View("Game");
         }
