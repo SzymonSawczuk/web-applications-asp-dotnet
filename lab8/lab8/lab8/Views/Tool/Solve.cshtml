@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Solve quadratic formula";
+}
+<div class="text-center">
+    <h1>Solve quadratic formula</h1>
+</div>
+<div>
+    <form method="post" asp-controller="Tool" asp-action="Solve2">
+        <ul>
+            <li>Parameter a: <input id="value1" type="number" name="a" /></li>
+            <li>Parameter b: <input id="value2" type="number" name="b" /></li>
+            <li>Parameter c: <input id="value3" type="number" name="c" /> </li>
+        </ul>
+        <input class="submit-butt" type="submit" value="Calculate" />
+    </form>
+
+
+</div>
+<div class="@ViewBag.resultStyle text-right">
+    <h4 class="result-inf">There are infinite amount of results</h4>
+    <h4 class="result-none">There are no results</h4>
+    <h4 class="result-only-one"> There is one result</h4>
+    <h4 class="result-whole"> There are two results</h4>
+
+    <p class="result-one">Result 1: @ViewBag.x1</p>
+    <p class="result-two">Result 2: @ViewBag.x2</p>
+</div>
+
