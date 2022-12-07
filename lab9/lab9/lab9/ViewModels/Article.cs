@@ -9,8 +9,11 @@ namespace lab9.ViewModels
 	{
 		Books,
 		Electronics,
-		SportEquipment,
-		Clothes
+		Sport_Equipment,
+		Clothes,
+		Toys,
+		AGD,
+		Music
 	}
 
 
@@ -25,17 +28,18 @@ namespace lab9.ViewModels
 
 		[Required]
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "{0} must be a Number.")]
-		[Display(Name = "Price in PLN")]
+		[Display(Name = "Price")]
         [Range(0, 1_000_000_000, ErrorMessage = "Price should be in range of 0 to 1 000 000 000PLN")]
-        [DisplayFormat(DataFormatString = "{0:F2}")]
-        public float Price { get; set; }
+        [DisplayFormat(DataFormatString = "{0:F2} PLN")]
+		public float Price { get; set; }
 
 		[DataType(DataType.DateTime)]
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime ExpirationDate { get; set; }
+        [Display(Name = "Expiration Date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy HH:mm:ss}", ApplyFormatInEditMode = false)]
+		public DateTime? ExpirationDate { get; set; }
 
         [Required]
+		[Display(Name = "Categories")]
         [DisplayFormat]
 		public List<Categories> CategoriesList { get; set; }
 
