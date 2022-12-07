@@ -26,8 +26,8 @@ namespace lab9
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<IArticlesContext, MockArticlesContextList>();
-            //services.AddSingleton<IArticlesContext, MockArticlesContextDict>();
+            //services.AddSingleton<IArticlesContext, MockArticlesContextList>();
+            services.AddSingleton<IArticlesContext, MockArticlesContextDict>();
 
         }
 
