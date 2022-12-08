@@ -29,7 +29,7 @@ namespace lab9.DataContext
 
         public List<Article> getArticles()
         {
-            return this.articles.Values.ToList();
+            return this.articles.Values.OrderBy(article => article.Id).ToList();
         }
 
         public void RemoveArticle(int id)
