@@ -27,7 +27,7 @@ namespace lab9.ViewModels
 		public string Name { get; set; }
 
 		[Required]
-        [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "{0} must be a Number.")]
+        //[RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "{0} must be a Number.")]
 		[Display(Name = "Price")]
         [Range(0, 1_000_000_000, ErrorMessage = "Price should be in range of 0 to 1 000 000 000PLN")]
         [DisplayFormat(DataFormatString = "{0:F2} PLN")]
