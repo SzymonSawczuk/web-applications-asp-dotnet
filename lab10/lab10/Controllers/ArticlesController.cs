@@ -16,7 +16,6 @@ namespace lab10.Controllers
     {
         private readonly MyDbContext _context;
         private IHostingEnvironment _hostingEnvironment;
-        //private string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
 
         public ArticlesController(MyDbContext context, IHostingEnvironment hostingEnvironment)
         {
@@ -70,7 +69,7 @@ namespace lab10.Controllers
                 if(article.Picture != null)
                 {
                     string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
-                    string newUniqueName = article.Picture.FileName + "_" + Guid.NewGuid().ToString();
+                    string newUniqueName =  Guid.NewGuid().ToString() + "_" + article.Picture.FileName;
 
                     using(FileStream newFile = new FileStream(Path.Combine(uploadFolder, newUniqueName), FileMode.Create))
                     {
@@ -166,6 +165,17 @@ namespace lab10.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var article = await _context.Article.FindAsync(id);
+
+            string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
+
+            if (article.FilePath != null)
+            {
+                if (System.IO.File.Exists(Path.Combine(uploadFolder, article.FilePath)))
+                {
+                    System.IO.File.Delete(Path.Combine(uploadFolder, article.FilePath));
+                }
+            }
+
             _context.Article.Remove(article);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

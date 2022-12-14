@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using lab10.Data;
 using lab10.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace lab10.Controllers
 {
     public class CategoriesController : Controller
     {
         private readonly MyDbContext _context;
+        private IHostingEnvironment _hostingEnvironment;
 
-        public CategoriesController(MyDbContext context)
+        public CategoriesController(MyDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Categories
@@ -140,6 +144,23 @@ namespace lab10.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Category.FindAsync(id);
+
+            var articles = await _context.Article.Where(a => a.CategoryId == id).ToListAsync();
+
+            string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
+
+            foreach (var article in articles)
+            {
+                if(article.FilePath != null)
+                {
+                    if(System.IO.File.Exists(Path.Combine(uploadFolder, article.FilePath)))
+                    {
+                        System.IO.File.Delete(Path.Combine(uploadFolder, article.FilePath));
+                    }
+                }
+                _context.Article.Remove(article);
+            }
+
             _context.Category.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

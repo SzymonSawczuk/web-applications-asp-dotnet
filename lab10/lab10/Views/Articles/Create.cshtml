@@ -25,8 +25,8 @@
             <div class="form-group">
                 <label asp-for="Picture" class="col-form-label"></label>
                 <div class="col-sm-10">
-                    <input asp-for="Picture" class="form-control custom-file-input" onchange="previewFile(event)" />
-                    <label asp-for="Picture" class="custom-file-label">choose a file...</label>
+                    <input asp-for="Picture" id="picture-input" class="form-control custom-file-input" onchange="previewFile(event)" />
+                    <label asp-for="Picture" id="picture-label" class="custom-file-label">choose a file...</label>
                 </div>
                 <img id="preview" />
             </div>
@@ -50,19 +50,16 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-            $(document).ready(function () {
-                $('.custom-file-input').on("change", function () {
-                    var fileName = $(this).val().split("\\").pop();
-                    $(this).next('.custom-file-label').html(fileName);
-                });
-            });
             var previewFile = function (event) {
                 var reader = new FileReader();
                 reader.onload = () => {
                     var output = document.getElementById('preview');
                     output.src = reader.result;
+                    
                 };
                 reader.readAsDataURL(event.target.files[0]);
+                document.getElementById("picture-label").innerHTML = event.target.files[0].name;
+                
             };
     </script>
 }

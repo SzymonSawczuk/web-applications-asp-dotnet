@@ -24,16 +24,16 @@ namespace lab10.Models
         [DisplayFormat(DataFormatString = "{0:F2} PLN")]
         public float Price { get; set; }
 
-        //[Display(Name = "Picture")]
+        [Display(Name = "Picture")]
         [NotMapped]
-        public IFormFile Picture { get; set; }
+        public IFormFile Picture { get; set; } = null;
 
-        public string? FilePath { get; set; }
-
-        //[Required]
-        public int CategoryId { get; set; }
+        public string? FilePath { get; set; } = null;
 
         [Required]
+        public int CategoryId { get; set; }
+
+
         [Display(Name = "Category")]
         public Category Category { get; set; }
 
@@ -42,7 +42,7 @@ namespace lab10.Models
              
         }
 
-        public Article(int id, string name, float price, IFormFile picture, string? filePath, int categoryId,  Category category)
+        public Article(int id, string name, float price, IFormFile? picture, string? filePath, int categoryId,  Category? category)
         {
             this.Id = id;
             this.Name = name;

@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FilePath)
+                @Html.DisplayNameFor(model => model.Picture)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)
@@ -29,6 +29,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+        var filepath = item.FilePath != null ? "/upload/" + item.FilePath : "/image/noImage.jpg";
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -37,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FilePath)
+                <img src="@filepath" height="100"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)

@@ -49,11 +49,11 @@ namespace lab10
 
             app.UseAuthorization();
 
-            var supportedCultures = new[] { "en", "fr", "es" };
-            var localisationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
-                .AddSupportedCultures(supportedCultures)
-                .AddSupportedUICultures(supportedCultures);
-            app.UseRequestLocalization(localisationOptions);
+            //var supportedCultures = new[] { "en", "fr", "es" };
+            //var localisationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+            //    .AddSupportedCultures(supportedCultures)
+            //    .AddSupportedUICultures(supportedCultures);
+            //app.UseRequestLocalization(localisationOptions);
 
             app.UseEndpoints(endpoints =>
             {
