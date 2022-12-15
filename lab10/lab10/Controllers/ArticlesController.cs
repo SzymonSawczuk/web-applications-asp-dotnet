@@ -15,7 +15,8 @@ namespace lab10.Controllers
     public class ArticlesController : Controller
     {
         private readonly MyDbContext _context;
-        private IHostingEnvironment _hostingEnvironment;
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private static string tempPath = "";
 
         public ArticlesController(MyDbContext context, IHostingEnvironment hostingEnvironment)
         {
@@ -96,11 +97,13 @@ namespace lab10.Controllers
             }
 
             var article = await _context.Article.FindAsync(id);
+
             if (article == null)
             {
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", article.CategoryId);
+            tempPath = article.FilePath;
             return View(article);
         }
 
@@ -109,7 +112,7 @@ namespace lab10.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,filePath,CategoryId")] Article article)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,FilePath,CategoryId")] Article article)
         {
             if (id != article.Id)
             {
@@ -120,6 +123,7 @@ namespace lab10.Controllers
             {
                 try
                 {
+                    article.FilePath = tempPath;
                     _context.Update(article);
                     await _context.SaveChangesAsync();
                 }

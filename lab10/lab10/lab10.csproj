@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\image\" />
+    <Folder Include="wwwroot\templates\" />
     <Folder Include="wwwroot\upload\" />
   </ItemGroup>
 
