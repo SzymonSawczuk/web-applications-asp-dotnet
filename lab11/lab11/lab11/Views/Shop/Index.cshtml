@@ -30,7 +30,7 @@
             if (index % 2 == 0)
             {
                 @:<div class="row w-100">
-            }
+                }
 
                 <div class="card ml-2 mb-2 col ">
                     <img class="card-img-top" src="@filepath" />
@@ -39,13 +39,27 @@
                         <div class="d-flex justify-content-between">
                             <p>@string.Format("{0:n2}", article.Price) PLN</p>
                             <p>@article.Category.Name</p>
+
                         </div>
+                        <div class="d-flex justify-content-end">
+                            <p>
+                                @using (Html.BeginForm("AppendToCart", "Shop", new { articleId = article.Id }, FormMethod.Post))
+                                {
+                                    <input type = "submit" value="Add to cart" class="btn btn-dark"/>
+                                }
+                             </p>
+
+                        <p class="btn btn-dark"><a class="text-light" asp-action="Details" asp-route-id="@article.Id">Details</a> </p>
 
                     </div>
+
+
                 </div>
 
-            if (index % 2 != 0)
-            {
+            </div>
+
+                if (index % 2 != 0)
+                                {
                 @:</div>
             }
 
@@ -55,5 +69,12 @@
         }
     </div>
 </main>
+
+@section CartSection{
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
+    </li>
+
+}
 
 

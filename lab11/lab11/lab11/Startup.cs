@@ -25,6 +25,15 @@ namespace lab11
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+                {
+                    options.IdleTimeout = TimeSpan.FromMinutes(5);
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.IsEssential = true;
+                });
+
             services.AddControllersWithViews();
             services.AddDbContextPool<MyDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyDb")));
         }
@@ -48,6 +57,8 @@ namespace lab11
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

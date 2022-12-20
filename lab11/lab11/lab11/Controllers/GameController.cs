@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace lab8.Controllers
 {
     public class GameController : Controller
     {
-        static int? amountN = null;
-        static int? randValue = null;
-        static int tryNumber = 1;
-        static bool isGuessed = false;
-
         [Route("Game/Game")]
         public IActionResult Game()
         {
@@ -23,8 +19,8 @@ namespace lab8.Controllers
         public IActionResult Set()
         {
             ViewBag.ShowClass = "start";
-            isGuessed = false;
-            tryNumber = 1;
+            HttpContext.Session.SetString("isGuessed", "false");
+            HttpContext.Session.SetInt32("tryNumber", 1);
             return View("Game");
         }
 
@@ -36,29 +32,33 @@ namespace lab8.Controllers
         [Route("/Set,{value}", Name = "game_url_value")]
         public IActionResult Set(int value)
         {
-            ViewBag.n = value;
-            amountN = value;
-            randValue = null;
-            ViewBag.ShowClass = "set_done";
-            isGuessed = false;
-            tryNumber = 1;
+            HttpContext.Session.SetInt32("amountN", value);
+            ViewBag.n = (int)HttpContext.Session.GetInt32("amountN");
+            HttpContext.Session.SetInt32("randValue", int.MinValue);
+
+            ViewBag.showclass = "set_done";
+            HttpContext.Session.SetString("isGuessed", "false");
+            HttpContext.Session.SetInt32("tryNumber", 1);
             return View("Game");
         }
 
         [Route("/Draw")]
         public IActionResult Draw()
         {
+            if(HttpContext.Session.GetInt32("amountN") == null ) return Redirect(Url.Link("game_url", new { }));
+
             Random rnd = new Random();
 
-            if(amountN != null)
-                randValue = rnd.Next(0, (int)amountN - 1);
+            if((int)HttpContext.Session.GetInt32("amountN") != -1)
+                HttpContext.Session.SetInt32("randValue", rnd.Next(0, (int)HttpContext.Session.GetInt32("amountN") - 1));
 
-            ViewBag.compNumb = randValue;
+            ViewBag.compNumb = (int)HttpContext.Session.GetInt32("randValue");
 
             ViewBag.ShowClass = "drawed";
 
-            isGuessed = false;
-            tryNumber = 1;
+            HttpContext.Session.SetString("isGuessed", "false");
+            HttpContext.Session.SetInt32("tryNumber", 1);
+         
 
             return View("Game");
         }
@@ -71,19 +71,25 @@ namespace lab8.Controllers
         [Route("/Guess,{value}", Name = "guess_url")]
         public IActionResult Guess(int value)
         {
+            if(HttpContext.Session.GetInt32("randValue") == null) return Redirect(Url.Link("game_url", new { }));
+
+            int randValue = (int)HttpContext.Session.GetInt32("randValue");
+            bool isGuessed = HttpContext.Session.GetString("isGuessed") == "true";
+            int tryNumber = (int)HttpContext.Session.GetInt32("tryNumber");
             if (isGuessed || value == randValue)
             {
                 ViewBag.ShowClass = "drawed guessed";
+                HttpContext.Session.SetString("isGuessed", "true");
             }
             else if (!isGuessed && value < randValue)
             {
                 ViewBag.ShowClass = "drawed larger";
-                if(!isGuessed) tryNumber++;
+                if(!isGuessed) HttpContext.Session.SetInt32("tryNumber", tryNumber + 1);
             }
             else if(!isGuessed && value > randValue)
             {
                 ViewBag.ShowClass = "drawed smaller";
-                if(!isGuessed) tryNumber++;
+                if(!isGuessed) HttpContext.Session.SetInt32("tryNumber", tryNumber + 1);
             }
 
             ViewBag.tryNum = tryNumber;

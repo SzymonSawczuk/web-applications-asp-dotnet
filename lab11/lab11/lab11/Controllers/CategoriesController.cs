@@ -9,6 +9,8 @@ using lab10.Data;
 using lab10.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace lab10.Controllers
 {
@@ -147,6 +149,8 @@ namespace lab10.Controllers
 
             var articles = await _context.Article.Where(a => a.CategoryId == id).ToListAsync();
 
+            
+
             string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
 
             foreach (var article in articles)
@@ -158,6 +162,25 @@ namespace lab10.Controllers
                         System.IO.File.Delete(Path.Combine(uploadFolder, article.FilePath));
                     }
                 }
+
+                var cart = new Dictionary<int, int>();
+                string cookie;
+                Request.Cookies.TryGetValue("cart", out cookie);
+                if (cookie != null)
+                {
+                    cart = JsonConvert.DeserializeObject<Dictionary<int, int>>(Request.Cookies["cart"]);
+                }
+
+                if (cart.ContainsKey(article.Id))
+                {
+                    cart[article.Id] -= 1;
+                    if (cart[article.Id] <= 0)
+                        cart.Remove(article.Id);
+                    CookieOptions option = new CookieOptions();
+                    option.Expires = DateTime.Now.AddDays(7);
+                    Response.Cookies.Append("cart", JsonConvert.SerializeObject(cart), option);
+                }
+
                 _context.Article.Remove(article);
             }
 
