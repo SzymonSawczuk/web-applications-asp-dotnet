@@ -1,0 +1,84 @@
+﻿@model IEnumerable<lab11.Models.CartViewModel>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Cart</h1>
+
+<main class="shop-paged-flex d-flex p-2">
+    <div class="links w-25 overflow-auto mr-auto p-2">
+        <ul class="list-group">
+            @foreach (var category in ViewBag.categories)
+            {
+                var activeElem = "text-dark";
+                if (ViewBag.activeElem != -1 && category.Id == ViewBag.activeElem) activeElem = "active text-light bg-dark border-dark";
+
+
+                <li class="list-group-item @activeElem"><a class="@activeElem" href="/Shop/Cart/@category.Id">@category.Name</a></li>
+
+            }
+        </ul>
+    </div>
+
+    <div class="articles w-100 overflow-auto d-flex flex-column align-items-center">
+        @foreach (var item in Model)
+        {
+            var filepath = item.Article.FilePath != null ? "/upload/" + item.Article.FilePath : "/image/noImage.jpg";
+
+        <div class="row w-100">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Article.Name)
+                        </p>
+                        <p>
+                            <img src="@filepath" height="100" />
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Article.Category.Name)
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                           
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Article.Price) 
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <p>
+                                @using (Html.BeginForm("AppendToCart", "Shop", new { articleId = item.Article.Id }, FormMethod.Post))
+                                {
+                                    <input type="submit" value="Add" class="btn btn-dark" />
+                                }
+                            </p>
+
+                            <p class="btn btn-dark"> <a class="text-light" asp-action="Details" asp-route-id="@item.Article.Id">Details</a></p>
+
+                            <p>
+                                @using (Html.BeginForm("RemoveFromCart", "Shop", new { articleId = item.Article.Id }, FormMethod.Post))
+                                {
+                                    <input type="submit" value="Remove" class="btn btn-dark" />
+                                }
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                }
+            </div>
+
+    
+</main>
+<div class="card"><p class="card-body m-auto">Total: @string.Format("{0:n2}", ViewBag.total) PLN </p></div>
+@section CartSection{ 
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
+    </li>
+
+}
+
+
