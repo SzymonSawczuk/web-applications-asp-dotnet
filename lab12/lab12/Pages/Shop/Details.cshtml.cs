@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using lab12.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,11 @@ namespace lab12.Pages.Shop
         }
 
         public Article Article { get; set; }
+        public int? backId;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            backId = HttpContext.Session.GetInt32("activeElem");
             if (id == null)
             {
                 return NotFound();
