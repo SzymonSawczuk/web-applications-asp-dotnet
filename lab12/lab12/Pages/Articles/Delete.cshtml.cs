@@ -5,18 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using lab10.Data;
-using lab10.Models;
+using lab12.Data;
+using lab12.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace lab12.Pages.Articles
 {
     public class DeleteModel : PageModel
     {
-        private readonly lab10.Data.MyDbContext _context;
+        private readonly lab12.Data.MyDbContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public DeleteModel(lab10.Data.MyDbContext context)
+        public DeleteModel(lab12.Data.MyDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [BindProperty]
@@ -50,6 +54,15 @@ namespace lab12.Pages.Articles
 
             if (Article != null)
             {
+                string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
+
+                if (Article.FilePath != null)
+                {
+                    if (System.IO.File.Exists(Path.Combine(uploadFolder, Article.FilePath)))
+                    {
+                        System.IO.File.Delete(Path.Combine(uploadFolder, Article.FilePath));
+                    }
+                }
                 _context.Article.Remove(Article);
                 await _context.SaveChangesAsync();
             }

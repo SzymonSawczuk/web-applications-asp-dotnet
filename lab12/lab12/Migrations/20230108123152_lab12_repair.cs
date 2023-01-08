@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace lab10.Migrations
+namespace lab12.Migrations
 {
-    public partial class Finish : Migration
+    public partial class lab12_repair : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -25,10 +25,11 @@
             @Html.DisplayFor(model => model.Article.Price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.FilePath)
+            @Html.DisplayNameFor(model => model.Article.Picture)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Article.FilePath)
+            @{var path = Model.Article.FilePath != null ? "/upload/" + Model.Article.FilePath : "/image/noImage.jpg";}
+            <img src="@path" alt="full-image" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Article.Category)

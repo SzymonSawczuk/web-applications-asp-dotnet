@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using lab10.Models;
+using lab12.Models;
 
-namespace lab10.Data
+namespace lab12.Data
 {
     public class MyDbContext:DbContext
     {

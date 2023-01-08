@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using lab10.Data;
+using lab12.Data;
 
-namespace lab10.Migrations
+namespace lab12.Migrations
 {
     [DbContext(typeof(MyDbContext))]
     partial class MyDbContextModelSnapshot : ModelSnapshot
@@ -18,7 +18,7 @@ namespace lab10.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("lab10.Models.Article", b =>
+            modelBuilder.Entity("lab12.Models.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace lab10.Migrations
                     b.ToTable("Article");
                 });
 
-            modelBuilder.Entity("lab10.Models.Category", b =>
+            modelBuilder.Entity("lab12.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,9 +61,9 @@ namespace lab10.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("lab10.Models.Article", b =>
+            modelBuilder.Entity("lab12.Models.Article", b =>
                 {
-                    b.HasOne("lab10.Models.Category", "Category")
+                    b.HasOne("lab12.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Article.Name" class="control-label"></label>
@@ -24,9 +24,12 @@
                 <span asp-validation-for="Article.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Article.FilePath" class="control-label"></label>
-                <input asp-for="Article.FilePath" class="form-control" />
-                <span asp-validation-for="Article.FilePath" class="text-danger"></span>
+                <label asp-for="Article.Picture" class="col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Article.Picture" id="picture-input" class="form-control custom-file-input" onchange="previewFile(event)" />
+                    <label asp-for="Article.Picture" id="picture-label" class="custom-file-label">choose a file...</label>
+                </div>
+                <img id="preview" />
             </div>
             <div class="form-group">
                 <label asp-for="Article.CategoryId" class="control-label"></label>
@@ -45,4 +48,17 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    var previewFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = () => {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        document.getElementById("picture-label").innerHTML = event.target.files[0].name;
+
+    };
+</script>
 }

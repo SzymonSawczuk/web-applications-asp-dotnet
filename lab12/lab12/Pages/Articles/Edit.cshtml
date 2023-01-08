@@ -25,9 +25,9 @@
                 <span asp-validation-for="Article.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Article.FilePath" class="control-label"></label>
-                <input asp-for="Article.FilePath" class="form-control" />
-                <span asp-validation-for="Article.FilePath" class="text-danger"></span>
+                <label asp-for="Article.Picture" class="control-label"></label>
+                @{var path = Model.Article.FilePath != null ? "/upload/" + Model.Article.FilePath : "/image/noImage.jpg";}
+                <img src="@path" alt="full-image" />
             </div>
             <div class="form-group">
                 <label asp-for="Article.CategoryId" class="control-label"></label>

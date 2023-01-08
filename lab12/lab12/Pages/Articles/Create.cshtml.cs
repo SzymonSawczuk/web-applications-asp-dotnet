@@ -5,18 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using lab10.Data;
-using lab10.Models;
+using lab12.Data;
+using lab12.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace lab12.Pages.Articles
 {
     public class CreateModel : PageModel
     {
-        private readonly lab10.Data.MyDbContext _context;
+        private readonly lab12.Data.MyDbContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public CreateModel(lab10.Data.MyDbContext context)
+        public CreateModel(lab12.Data.MyDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult OnGet()
@@ -34,6 +38,19 @@ namespace lab12.Pages.Articles
             if (!ModelState.IsValid)
             {
                 return Page();
+            }
+
+            if (Article.Picture != null)
+            {
+                string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
+                string newUniqueName = Guid.NewGuid().ToString() + "_" + Article.Picture.FileName;
+
+                using (FileStream newFile = new FileStream(Path.Combine(uploadFolder, newUniqueName), FileMode.Create))
+                {
+                    Article.Picture.CopyTo(newFile);
+                }
+
+                Article.FilePath = newUniqueName;
             }
 
             _context.Article.Add(Article);

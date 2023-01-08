@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using lab10.Models;
+using lab12.Models;
 using Microsoft.AspNetCore.Http;
 
-namespace lab10.Models
+namespace lab12.Models
 {
     public class Article
     {
@@ -26,7 +26,7 @@ namespace lab10.Models
 
         [Display(Name = "Picture")]
         [NotMapped]
-        public IFormFile Picture { get; set; } = null;
+        public IFormFile Picture { get; set; } 
 
         public string? FilePath { get; set; } = null;
 
@@ -42,7 +42,7 @@ namespace lab10.Models
              
         }
 
-        public Article(int id, string name, float price, IFormFile? picture, string? filePath, int categoryId,  Category? category)
+        public Article(int id, string name, float price, IFormFile picture, string? filePath, int categoryId,  Category? category)
         {
             this.Id = id;
             this.Name = name;
