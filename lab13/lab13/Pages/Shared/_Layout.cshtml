@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - lab13</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
     <header>
@@ -22,8 +23,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Articles/Index">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Shop">Shop</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        @RenderSection("CartSection", required: false)
                     </ul>
                 </div>
             </div>
