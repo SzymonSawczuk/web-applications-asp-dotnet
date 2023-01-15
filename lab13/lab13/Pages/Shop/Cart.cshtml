@@ -26,55 +26,65 @@
         {
             var filepath = item.Article.FilePath != null ? "/upload/" + item.Article.FilePath : "/image/noImage.jpg";
 
-        <div class="row w-100">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <p>
-                            @Html.DisplayFor(modelItem => item.Article.Name)
-                        </p>
-                        <p>
-                            <img src="@filepath" height="100" />
-                        </p>
-                        <p>
-                            @Html.DisplayFor(modelItem => item.Article.Category.Name)
-                        </p>
-                        <p>
-                            @Html.DisplayFor(modelItem => item.Amount)
-                           
-                        </p>
-                        <p>
-                            @Html.DisplayFor(modelItem => item.Article.Price) 
-                        </p>
-                        <div class="d-flex justify-content-end">
+            <div class="row w-100">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
                             <p>
-                                <form method="post" asp-page-handler="AppendToCart">
-                                    <input type="number" value="@item.Article.Id" name="ArticleId" hidden />
-                                    <input type="submit" value="Add to cart" class="btn btn-dark" />
-                                </form>
+                                @Html.DisplayFor(modelItem => item.Article.Name)
                             </p>
-
-                            <p class="btn btn-dark"><a class="text-light" asp-page="./Details" asp-route-id="@item.Article.Id">Details</a> </p>
-
                             <p>
-                                <form method="post" asp-page-handler="RemoveFromCart">
-                                    <input type="number" value="@item.Article.Id" name="ArticleId" hidden />
-                                    <input type="submit" value="Remove" class="btn btn-dark" />
-                                </form>
+                                <img src="@filepath" height="100" />
                             </p>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.Article.Category.Name)
+                            </p>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.Amount)
 
+                            </p>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.Article.Price)
+                            </p>
+                            <div class="d-flex justify-content-end">
+                                <p>
+                                    <form method="post" asp-page-handler="AppendToCart">
+                                        <input type="number" value="@item.Article.Id" name="ArticleId" hidden />
+                                        <input type="submit" value="Add to cart" class="btn btn-dark" />
+                                    </form>
+                                </p>
+
+                                <p class="btn btn-dark"><a class="text-light" asp-page="./Details" asp-route-id="@item.Article.Id">Details</a> </p>
+
+                                <p>
+                                    <form method="post" asp-page-handler="RemoveFromCart">
+                                        <input type="number" value="@item.Article.Id" name="ArticleId" hidden />
+                                        <input type="submit" value="Remove" class="btn btn-dark" />
+                                    </form>
+                                </p>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-                }
-            </div>
+        }
+    </div>
 
-    
 </main>
-<div class="card"><p class="card-body m-auto">Total: @string.Format("{0:n2}", Model.total) PLN </p></div>
-@section CartSection{ 
+<div class="d-flex justify-content-end align-items-center">
+    <div class="card">
+        <p class="card-body m-auto">Total: @string.Format("{0:n2}", Model.total) PLN </p>
+    </div>
+    @if (User.Identity.IsAuthenticated && Model.activeElem == -1)
+    {
+        <a class="text-dark ml-2" asp-area="" asp-page="/"><div class="card-body btn btn-primary float-right m-auto">BUY</div></a>
+    }
+</div>
+
+
+
+@section CartSection{
     <li class="nav-item">
         <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
     </li>

@@ -76,7 +76,7 @@ namespace lab13.Pages.Shop
 
             this.activeElem = id;
 
-
+            this.total = CalculateTotal(this.Cart);
 
             return Page();
         }
