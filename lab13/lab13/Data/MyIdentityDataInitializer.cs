@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using lab13.Model;
 using System.Threading.Tasks;
 
 namespace lab13.Data
 {
     public class MyIdentityDataInitializer
     {
-        public static void SeedData(UserManager<IdentityUser> userManager,
+        public static void SeedData(UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
@@ -26,14 +27,23 @@ namespace lab13.Data
                 };
                 IdentityResult roleResult = roleManager.CreateAsync(role).Result;
             }
+            if (!roleManager.RoleExistsAsync("User").Result)
+{
+                 IdentityRole role = new IdentityRole
+                 {
+                     Name = "User",
+                 };
+                 IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+             }
+            
         }
 
-        public static void SeedOneUser(UserManager<IdentityUser> userManager,
+        public static void SeedOneUser(UserManager<ApplicationUser> userManager,
     string name, string password, string role = null)
         {
             if (userManager.FindByNameAsync(name).Result == null)
             {
-                IdentityUser user = new IdentityUser
+                ApplicationUser user = new ApplicationUser
                 {
                     UserName = name, // musi być taki sam jak email, inaczej nie zadziała
                     Email = name
@@ -45,9 +55,9 @@ namespace lab13.Data
                 }
             }
         }
-        public static void SeedUsers(UserManager<IdentityUser> userManager)
+        public static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            SeedOneUser(userManager, "normaluser@localhost", "nUpass1!");
+            SeedOneUser(userManager, "normaluser@localhost", "nUpass1!", "User");
             SeedOneUser(userManager, "adminuser@localhost", "aUpass1!", "Admin");
         }
     }

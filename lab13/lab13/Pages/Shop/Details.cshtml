@@ -44,9 +44,12 @@
 </div>
 
 
-@section CartSection{
-    <li class="nav-item">
-        <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
-    </li>
+@if (!User.IsInRole("Admin"))
+{
+    @section CartSection{
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
+        </li>
 
+    }
 }

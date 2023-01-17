@@ -76,17 +76,19 @@
     <div class="card">
         <p class="card-body m-auto">Total: @string.Format("{0:n2}", Model.total) PLN </p>
     </div>
-    @if (User.Identity.IsAuthenticated && Model.activeElem == -1)
+    @if (Model.activeElem == 0000 - 1 && Model.total > 0)
     {
-        <a class="text-dark ml-2" asp-area="" asp-page="/"><div class="card-body btn btn-primary float-right m-auto">BUY</div></a>
+        <a class="text-dark ml-2" asp-area="" asp-page="/Shop/Summary"><div class="card-body btn btn-primary float-right m-auto">Go to summary</div></a>
     }
 </div>
 
 
+@if (!User.IsInRole("Admin"))
+{
+    @section CartSection{
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
+        </li>
 
-@section CartSection{
-    <li class="nav-item">
-        <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
-    </li>
-
+    }
 }

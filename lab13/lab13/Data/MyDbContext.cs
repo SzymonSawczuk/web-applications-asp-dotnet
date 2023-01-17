@@ -5,10 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using lab13.Model;
 
 namespace lab13.Data
 {
-    public class MyDbContext : IdentityDbContext
+    public class MyDbContext : IdentityDbContext<ApplicationUser>
     {
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {

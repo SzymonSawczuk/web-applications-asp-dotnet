@@ -1,4 +1,5 @@
 using lab13.Data;
+using lab13.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,15 +37,21 @@ namespace lab13
                 options.Cookie.IsEssential = true;
             });
             services.AddRazorPages();
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("NotAdmin", policy => policy.RequireAssertion(context => !context.User.IsInRole("Admin")));
+                });
+
             services.AddDbContextPool<MyDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyDb")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<MyDbContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -74,7 +81,7 @@ namespace lab13
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Shop}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
