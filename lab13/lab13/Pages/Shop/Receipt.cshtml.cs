@@ -90,6 +90,8 @@ namespace lab13.Pages.Shop
 
             HttpContext.Session.SetString("Payment", "");
 
+            Response.Cookies.Delete("cart");
+
             return Page();
 
         }
