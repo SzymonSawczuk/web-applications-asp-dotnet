@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using lab14.Data;
 using lab14.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace lab14.Api
@@ -14,6 +15,7 @@ namespace lab14.Api
     [EnableCors]
     [Route("api/category")]
     [ApiController]
+    //[Authorize(Roles = "Admin")]
     public class CategoriesApiController : ControllerBase
     {
         private IRepositoryCategory repository;

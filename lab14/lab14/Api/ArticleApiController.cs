@@ -8,12 +8,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace lab14.Api
 {
     [EnableCors]
     [Route("api/article")]
     [ApiController]
+
+    //[Authorize(Roles = "Admin")]
     public class ArticleApiController : ControllerBase
     {
         private IRepository repository;
