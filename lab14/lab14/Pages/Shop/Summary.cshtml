@@ -1,0 +1,122 @@
+﻿@page
+@model lab14.Pages.Shop.SummaryModel
+@{
+    ViewData["Title"] = "Summary";
+}
+
+<h1>Summary</h1>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<form id="profile-form" method="post" asp-page-handler="Receipt">
+    <main class="shop-paged-flex d-flex p-2">
+        <div class="row w-100">
+            <div class="col-md-6">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.FirstName"></label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.LastName"></label>
+                    <input asp-for="Input.LastName" class="form-control" />
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.PhoneNumber"></label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Address"></label>
+                    <input asp-for="Input.Address" class="form-control" />
+                    <span asp-validation-for="Input.Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.PostCode"></label>
+                    <input asp-for="Input.PostCode" class="form-control" />
+                    <span asp-validation-for="Input.PostCode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.City"></label>
+                    <input asp-for="Input.City" class="form-control" />
+                    <span asp-validation-for="Input.City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Country"></label>
+                    <input asp-for="Input.Country" class="form-control" />
+                    <span asp-validation-for="Input.Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Voivodeship"></label>
+                    <input asp-for="Input.Voivodeship" class="form-control" />
+                    <span asp-validation-for="Input.Voivodeship" class="text-danger"></span>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="articles w-100 overflow-auto d-flex flex-column align-items-center w-100">
+            @foreach (var item in Model.Cart)
+            {
+                var filepath = item.Article.FilePath != null ? "/upload/" + item.Article.FilePath : "/image/noImage.jpg";
+
+                <div class="row w-100">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Article.Name)
+                                </p>
+                                <p class="float-right">
+                                    <img src="@filepath" height="100" />
+                                </p>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Article.Category.Name)
+                                </p>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+
+                                </p>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Article.Price)
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </main>
+        <div class="m-2 w-25">
+            <h4>Payment option</h4>
+            <select class="form-control" asp-for="Selected" asp-items="Model.SelectList"></select>
+        </div>
+        <div class="d-flex justify-content-end align-items-center">
+            <div class="card">
+                <p class="card-body m-auto">Total: @string.Format("{0:n2}", Model.total) PLN </p>
+            </div>
+            <div class="ml-2">
+                <button id="update-profile-button" type="submit" class="card-body btn btn-primary float-right m-auto">BUY</button>
+            </div>
+        </div>
+</form>
+
+
+@if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+{
+    @section CartSection{
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
+        </li>
+
+    }
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,37 @@
+﻿@page
+@model lab14.Pages.Shop.HomeModel
+@{
+}
+
+<form id="addform" asp-page-handler="AddArticle" method="post">
+    <div class="form-group">
+        <label asp-for="Article.Name" class="control-label"></label>
+        <input asp-for="Article.Name" class="form-control" />
+        <span asp-validation-for="Article.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Article.Price" class="control-label"></label>
+        <input asp-for="Article.Price" class="form-control" />
+        <span asp-validation-for="Article.Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Article.CategoryId" class="control-label"></label>
+        <select asp-for="Article.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Dodaj</button>
+    </div>
+</form>
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead><tr><th>ID</th><th>Name</th><th>Price</th><th>Category</th></tr></thead>
+    <tbody>
+        @foreach (var r in Model.Repository.Articles)
+        {
+        <tr>
+            <td>@r.Id</td>
+            <td>@r.Name</td>
+            <td>@r.Price</td>
+            <td>@r.CategoryId</td>
+        </tr>}
+    </tbody>
+</table>
