@@ -20,8 +20,8 @@ namespace lab14.Pages.Shop
         }
         [BindProperty]
         public IList<Category> Category { get; set; }
-        [BindProperty]
-        public IList<Article> Article { get; set; }
+        //[BindProperty]
+        //public IList<Article> Article { get; set; }
 
         public int? activeElem = -1;
 
@@ -31,13 +31,13 @@ namespace lab14.Pages.Shop
             Category = await _context.Category.ToListAsync();
             if (id == null)
             {
-                Article = await _context.Article.ToListAsync();
-                HttpContext.Session.SetInt32("activeElem", -1);
+               // Article = await _context.Article.ToListAsync();
+               // HttpContext.Session.SetInt32("activeElem", -1);
 
                 return Page();
             }
             activeElem = id;
-            Article = await _context.Article.Where(article => article.CategoryId == id).ToListAsync();
+            //Article = await _context.Article.Where(article => article.CategoryId == id).ToListAsync();
             HttpContext.Session.SetInt32("activeElem", (int)id);
 
             return Page();

@@ -72,6 +72,17 @@ namespace lab14.Data
             _context.SaveChanges();
             return article;
         }
+
+        public IEnumerable<Article> getNext(int id, int n, int categoryId)
+        {
+            int index = 0;
+            return from article in (from article_inner in articles
+                            where article_inner.Key > id && (categoryId != -1 ? article_inner.Value.CategoryId == categoryId : true)
+                            orderby article_inner.Key ascending
+                            select article_inner.Value)
+                   where n >= index++
+                   select article;
+        }
         
     }
 }

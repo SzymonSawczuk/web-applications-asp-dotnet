@@ -49,5 +49,14 @@ namespace lab14.Api
 
         [HttpDelete("{id}")]
         public void Delete(int id) => repository.DeleteArticle(id);
+
+        [HttpGet("next/{id},{n},{categoryId}")]
+        public IEnumerable<Article> GetNext(int id, int n, int categoryId)
+        {
+            IEnumerable<Article> result = repository.getNext(id, n, categoryId);
+            if (!result.Any()) return null;
+            return result;
+        }
     }
+
 }

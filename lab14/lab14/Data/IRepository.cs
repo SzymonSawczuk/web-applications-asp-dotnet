@@ -14,5 +14,7 @@ namespace lab14.Data
         Article UpdateArticle(Article article);
         void DeleteArticle(int id);
 
+        public IEnumerable<Article> getNext(int id, int n, int categoryId);
+
     }
 }
