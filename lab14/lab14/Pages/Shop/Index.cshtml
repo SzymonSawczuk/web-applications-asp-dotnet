@@ -1,0 +1,172 @@
+﻿@page "{id:int?}"
+@model lab14.Pages.Shop.IndexModel
+@{
+    ViewData["Title"] = "Shop";
+}
+@using Microsoft.AspNetCore.Antiforgery
+@inject IAntiforgery antiforgery
+
+<h1>Shop</h1>
+
+<main class="shop-paged-flex d-flex p-2">
+    <div class="links w-25 overflow-auto mr-auto p-2">
+        <ul class="list-group">
+            @foreach (var category in Model.Category)
+            {
+                var activeElem = "text-dark";
+                if (Model.activeElem != -1 && category.Id == Model.activeElem) activeElem = "active text-light bg-dark border-dark";
+
+
+                <li class="list-group-item @activeElem"><a class="@activeElem" href="/Shop/Index/@category.Id">@category.Name</a></li>
+
+            }
+        </ul>
+    </div>
+
+    <div class="articles w-100 overflow-auto d-flex flex-column align-items-center">
+
+       <div id="items" class="w-100 d-flex flex-column align-items-center"></div>
+        <div id="JSbutton">
+            <button class="btn btn-dark" onclick="jsNext()"> Pokaz wiecej </button>
+        </div>
+    </div>
+
+</main>
+
+@if (!User.IsInRole("Admin"))
+{
+    @section CartSection{
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
+        </li>
+
+    }
+}
+
+@section Scripts{
+    @{var categories = string.Join(',', Model.Category.Select(category => $"{category.Id}:{category.Name}"));}
+<script>
+
+        var lastIndex = 0;
+        var amountOnLoad = 2;
+        const items = document.getElementById("items");
+        const buttonItem = document.getElementById("JSbutton");
+        const categories = '@categories';
+        const admin = '@User.IsInRole("Admin")';
+
+
+
+        const jsNext = () => {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    const articles = JSON.parse(this.responseText);
+
+
+                    articles.forEach(article => {
+
+                        const new_item = document.createElement("div");
+                        new_item.className = "card ml-2 mb-2 w-50";
+
+                        let image = article.filePath != null ? "/upload/" + article.filePath : "/image/noImage.jpg";
+                        const image_elem = document.createElement("img");
+                        image_elem.src = image;
+                        image_elem.alt = "miniture";
+                        image_elem.className = "card-img-top";
+                        new_item.appendChild(image_elem);
+
+                        const body_card = document.createElement("div");
+                        body_card.className = "card-body d-flex flex-column justify-content-end";
+
+                        const title_card = document.createElement("h5");
+                        title_card.className = "card-title";
+                        title_card.innerHTML = article.name;
+                        body_card.appendChild(title_card);
+
+                        const content_card = document.createElement("div");
+                        content_card.className = "d-flex justify-content-between";
+
+                        const price_p = document.createElement("p");
+                        price_p.innerHTML = article.price + " PLN";
+                        content_card.appendChild(price_p);
+
+                        const category_p = document.createElement("p");
+                        const name_category = categories.split(",").find(category => category.split(":")[0] == article.categoryId).split(":")[1];
+                        category_p.innerHTML = name_category;
+                        content_card.appendChild(category_p);
+
+                        body_card.appendChild(content_card);
+
+                        const card_cart = document.createElement("div");
+
+                        if(admin == "False")
+                        {
+                            const card_cart_p = document.createElement("p");
+                            const card_form = document.createElement("form");
+
+                            card_form.method = "post";
+
+                            const input_id = document.createElement("input");
+                            input_id.type = "number";
+                            input_id.value = article.id;
+                            input_id.name = "articleId";
+                            input_id.hidden = true;
+                            card_form.appendChild(input_id);
+
+                            const input_button = document.createElement("input");
+                            input_button.type = "submit";
+                            input_button.value = "Add to cart";
+                            input_button.className = "btn btn-dark";
+                            card_form.appendChild(input_button);
+
+                            const request_token = document.createElement("input");
+                            request_token.name = "__RequestVerificationToken";
+                            request_token.type = "hidden";
+                            request_token.value = "@antiforgery.GetAndStoreTokens(HttpContext).RequestToken";
+                            card_form.appendChild(request_token);
+
+
+                            card_cart_p.appendChild(card_form);
+                            card_cart.appendChild(card_cart_p)
+                        }
+
+                        const details_p = document.createElement("p");
+                        details_p.className = "btn btn-dark";
+                        const detail_link = document.createElement("a");
+                        detail_link.className = "text-light";
+                        detail_link.href = "/Shop/Details?id=" + article.id;
+                        detail_link.innerHTML = "Details";
+
+                        details_p.appendChild(detail_link);
+                        card_cart.appendChild(details_p);
+
+                        body_card.appendChild(card_cart);
+
+                        new_item.appendChild(body_card);
+
+                        lastIndex = article.id;
+                        items.appendChild(new_item);
+                    });
+
+
+                }
+                else if (this.status === 204) {
+                    buttonItem.style.display = "none";
+
+                }
+                else  {
+                    console.warn("Recived " + this.status + " in response code.");
+
+                }
+            };
+            let str = "/api/article/next/" + lastIndex + "," + amountOnLoad + "," + '@Model.activeElem';
+            console.log(str);
+            xhr.open("get", str);
+            xhr.send();
+        };
+
+        document.addEventListener("onload", jsNext());
+</script>
+
+}
+

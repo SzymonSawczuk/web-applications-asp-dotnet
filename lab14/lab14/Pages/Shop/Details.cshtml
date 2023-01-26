@@ -1,0 +1,55 @@
+﻿@page
+@model lab14.Pages.Shop.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.Picture)
+        </dt>
+        <dd class="col-sm-10">
+            @{var path = Model.Article.FilePath != null ? "/upload/" + Model.Article.FilePath : "/image/noImage.jpg";}
+            <img src="@path" alt="full-image" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.Category.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    @{var backId = Model.backId == -1 || Model.backId == null ? "" : Model.backId.ToString();}
+    <a href="/Shop/Index/@backId">Back to shop</a>
+</div>
+
+
+@if (!User.IsInRole("Admin"))
+{
+    @section CartSection{
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Shop/Cart">Cart</a>
+        </li>
+
+    }
+}
