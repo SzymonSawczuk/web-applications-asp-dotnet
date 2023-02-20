@@ -1,7 +1,7 @@
 # DOTNET
 Solutions for .NET web applications laboratories <br/>
 <br/>
-Laboratory nr 1. Technical introduction to html\n
+Laboratory nr 1. Technical introduction to html<br/>
 Laboratory nr 2, 3, 4. Simple pages using only html, css and javascript <br/>
 Laboratory nr 5. Technical introduction and simple program created in C#<br/>
 Laboratory nr 6, 7. Training C# and learning more advanced concepts such as LINQ, Reflection<br/>
